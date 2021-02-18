@@ -9,7 +9,7 @@ $(document).ready(function () {
 
 function initBkash() {
     bKash.init({
-      paymentMode: 'checkout', // Performs a single checkout.
+      paymentMode: 'checkout',
       paymentRequest: {"amount": '85.50', "intent": 'sale'},
 
       createRequest: function (request) {
@@ -25,13 +25,13 @@ function initBkash() {
               bKash.create().onSuccess(data);
             } 
             else {
-              bKash.create().onError(); // Run clean up code
+              bKash.create().onError(); 
               alert(data.errorMessage + " Tag should be 2 digit, Length should be 2 digit, Value should be number of character mention in Length, ex. MI041234 , supported tags are MI, MW, RF");
             }
 
           },
           error: function () {
-            bKash.create().onError(); // Run clean up code
+            bKash.create().onError(); 
             alert(data.errorMessage);
           }
         });
@@ -45,19 +45,19 @@ function initBkash() {
           success: function (data) {
 
             if (data && data.paymentID != null) {
-              // On success, perform your desired action
+              
               alert('[SUCCESS] data : ' + JSON.stringify(data));
               window.location.href = "/success_page.html";
 
             } else {
               alert('[ERROR] data : ' + JSON.stringify(data));
-              bKash.execute().onError();//run clean up code
+              bKash.execute().onError();
             }
 
           },
           error: function () {
             alert('An alert has occurred during execute');
-            bKash.execute().onError(); // Run clean up code
+            bKash.execute().onError(); 
           }
         });
       },
